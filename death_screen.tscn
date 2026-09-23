@@ -1,0 +1,154 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://death_screen.gd" id="1_death"]
+[ext_resource type="Texture2D" uid="uid://c38lwv4aoat1r" path="res://icon.png" id="2_minion"]
+[ext_resource type="AudioStream" path="res://sfx_death.wav" id="3_sfx"]
+[ext_resource type="Shader" path="res://purple_minion.gdshader" id="4_purple"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1"]
+shader = ExtResource("4_purple")
+shader_parameter/shadow = Color(0.121569, 0.0392157, 0.223529, 1)
+shader_parameter/mid = Color(0.415686, 0.180392, 0.694118, 1)
+shader_parameter/light = Color(0.717647, 0.509804, 0.952941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2"]
+shader = ExtResource("4_purple")
+shader_parameter/shadow = Color(0.196078, 0.0627451, 0.329412, 1)
+shader_parameter/mid = Color(0.592157, 0.278431, 0.898039, 1)
+shader_parameter/light = Color(0.913725, 0.729412, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3"]
+shader = ExtResource("4_purple")
+shader_parameter/shadow = Color(0.145098, 0.0470588, 0.258824, 1)
+shader_parameter/mid = Color(0.505882, 0.223529, 0.807843, 1)
+shader_parameter/light = Color(0.819608, 0.623529, 1, 1)
+
+[node name="DeathScreen" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_death")
+
+[node name="Fade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.141176, 0.054902, 0.223529, 0.945098)
+
+[node name="Minions" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="M1" type="TextureRect" parent="Minions"]
+material = SubResource("ShaderMaterial_m1")
+texture_filter = 1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = -250.0
+offset_right = -200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("2_minion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="M2" type="TextureRect" parent="Minions"]
+material = SubResource("ShaderMaterial_m2")
+texture_filter = 1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -290.0
+offset_right = 150.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("2_minion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="M3" type="TextureRect" parent="Minions"]
+material = SubResource("ShaderMaterial_m3")
+texture_filter = 1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = -240.0
+offset_right = 420.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("2_minion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 56.0
+offset_right = 520.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.909804, 0.290196, 1)
+theme_override_colors/font_outline_color = Color(0.0784314, 0.027451, 0.129412, 1)
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 112
+text = "OOPS."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quip" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 196.0
+offset_right = 520.0
+offset_bottom = 256.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.909804, 0.823529, 1, 1)
+theme_override_colors/font_outline_color = Color(0.0784314, 0.027451, 0.129412, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 44
+text = "the bananas will wait."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 266.0
+offset_right = 520.0
+offset_bottom = 308.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.729412, 0.611765, 0.898039, 1)
+theme_override_colors/font_outline_color = Color(0.0784314, 0.027451, 0.129412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "hold on, they're carrying you back..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sfx")
+volume_db = -3.0
