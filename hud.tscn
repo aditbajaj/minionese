@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dqmrsknra4c81"]
+
+[ext_resource type="Script" uid="uid://fxi6410elq0i" path="res://hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://deacymfp6tamx" path="res://banana.png" id="2_tex"]
+
+[node name="HUD" type="CanvasLayer" unique_id=201993059]
+layer = 5
+script = ExtResource("1_hud")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1200252100]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 34
+
+[node name="Counter" type="HBoxContainer" parent="Margin" unique_id=57942512]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="Margin/Counter" unique_id=193566460]
+texture_filter = 1
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Margin/Counter" unique_id=1262743354]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.941176, 0.552941, 1)
+theme_override_colors/font_outline_color = Color(0.117647, 0.0784314, 0.0196078, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 46
+text = "0 / 0"
+vertical_alignment = 1

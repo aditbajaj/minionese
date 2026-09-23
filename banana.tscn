@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://banana.gd" id="1_banana"]
+[ext_resource type="Texture2D" path="res://banana.png" id="2_tex"]
+[ext_resource type="AudioStream" path="res://sfx_banana.wav" id="3_sfx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_banana"]
+radius = 34.0
+
+[node name="Banana" type="Area2D" groups=["banana"]]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_banana")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_banana")
+
+[node name="Sparks" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 22
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 560)
+initial_velocity_min = 140.0
+initial_velocity_max = 340.0
+scale_amount_min = 3.0
+scale_amount_max = 7.0
+color = Color(1, 0.862745, 0.2, 1)
+
+[node name="Pop" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -60.0
+offset_top = -104.0
+offset_right = 60.0
+offset_bottom = -60.0
+text = "+1"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 0.898039, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.101961, 0.0705882, 0.0196078, 1)
+theme_override_constants/outline_size = 10
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sfx")
+volume_db = -4.0
