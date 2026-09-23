@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="idk"
+config/name="minionese"
 run/main_scene="uid://j7rxgo0gu1dv"
 config/features=PackedStringArray("4.7", "Mobile")
 
