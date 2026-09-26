@@ -69,3 +69,10 @@ func _squash(sx: float, sy: float) -> void:
 	var tween := create_tween()
 	tween.tween_property(sprite, "scale", BASE_SCALE, 0.22) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+func bonk() -> void:
+	_squash(1.35, 0.7)
+	sprite.modulate = Color(1.0, 0.55, 0.55)
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.25)

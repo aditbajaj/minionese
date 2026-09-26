@@ -1,6 +1,7 @@
 extends Area2D
 
 signal collected
+signal smashed
 
 const BOB_HEIGHT = 8.0
 const BOB_SPEED = 2.4
@@ -56,4 +57,25 @@ func _on_body_entered(body: Node2D) -> void:
 
 	# Stay alive long enough for the sound and sparks to finish
 	await get_tree().create_timer(1.0).timeout
+	queue_free()
+
+
+# Crash style: every banana you skipped comes back for you at the end
+func smash_into(target: Node2D, delay: float) -> void:
+	taken = true
+	shape.set_deferred("disabled", true)
+	await get_tree().create_timer(delay).timeout
+
+	var tween := create_tween()
+	tween.tween_property(self, "global_position", global_position + Vector2(0, -140), 0.22) \
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(sprite, "rotation", TAU * 3.0, 0.55)
+	tween.tween_property(self, "global_position", target.global_position, 0.33) \
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	await tween.finished
+
+	sparks.emitting = true
+	sprite.visible = false
+	smashed.emit()
+	await get_tree().create_timer(0.8).timeout
 	queue_free()
