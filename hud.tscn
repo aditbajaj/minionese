@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fxi6410elq0i" path="res://hud.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://deacymfp6tamx" path="res://banana.png" id="2_tex"]
+[ext_resource type="Script" path="res://touch_controls.gd" id="3_touch"]
 
 [node name="HUD" type="CanvasLayer" unique_id=201993059]
 layer = 5
@@ -61,3 +62,12 @@ theme_override_font_sizes/font_size = 72
 text = "YOU WIN!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TouchControls" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_touch")
