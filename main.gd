@@ -6,6 +6,7 @@ const DEATH_SCREEN_TIME = 3.0
 @onready var player: CharacterBody2D = $Player
 @onready var hud: CanvasLayer = $HUD
 @onready var death_screen: CanvasLayer = $DeathScreen
+@onready var music: AudioStreamPlayer = $AudioStreamPlayer
 
 var collected: int = 0
 var total: int = 0
@@ -18,6 +19,17 @@ func _ready() -> void:
 		banana.collected.connect(_on_banana_collected)
 	hud.set_count(collected, total)
 	player.died.connect(_on_player_died)
+
+	# Hold the minion still and the music back until the hello finishes
+	player.set_physics_process(false)
+	var hello := AudioStreamPlayer.new()
+	hello.stream = preload("res://hello.mp3")
+	add_child(hello)
+	hello.play()
+	await hello.finished
+	hello.queue_free()
+	player.set_physics_process(true)
+	music.play()
 
 
 func _on_banana_collected() -> void:

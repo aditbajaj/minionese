@@ -494,7 +494,6 @@ position_smoothing_speed = 7.5
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_music")
 volume_db = -10.0
-autoplay = true
 
 [node name="Bananas" type="Node2D" parent="."]
 
