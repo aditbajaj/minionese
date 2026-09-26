@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://banana.tscn" id="8_banana"]
 [ext_resource type="PackedScene" path="res://hud.tscn" id="9_hud"]
 [ext_resource type="PackedScene" path="res://death_screen.tscn" id="10_death"]
+[ext_resource type="AudioStream" path="res://sfx_smash.mp3" id="11_smash"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
 radius = 40.0
@@ -680,3 +681,7 @@ position = Vector2(12512, -174)
 [node name="HUD" parent="." instance=ExtResource("9_hud")]
 
 [node name="DeathScreen" parent="." instance=ExtResource("10_death")]
+
+[node name="SmashSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_smash")
+max_polyphony = 8

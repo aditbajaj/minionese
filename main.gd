@@ -13,6 +13,7 @@ const MAX_BARRAGE_TIME = 5.0
 @onready var hud: CanvasLayer = $HUD
 @onready var death_screen: CanvasLayer = $DeathScreen
 @onready var music: AudioStreamPlayer = $AudioStreamPlayer
+@onready var smash_sfx: AudioStreamPlayer = $SmashSfx
 
 var collected: int = 0
 var total: int = 0
@@ -83,6 +84,8 @@ func _win() -> void:
 
 func _on_banana_smashed() -> void:
 	player.bonk()
+	smash_sfx.pitch_scale = randf_range(0.85, 1.2)
+	smash_sfx.play()
 	var cam: Camera2D = player.get_node("Camera2D")
 	var tween := create_tween()
 	for i in 4:
